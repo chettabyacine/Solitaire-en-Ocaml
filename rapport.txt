@@ -1,0 +1,21 @@
+1. Identifiants:
+	Yacine CHETTAB, ID Gitlab: @chettab , NETU= 22210484
+	Mohamed OUIKENE, ID Gitlab: @ouikene, NETU = 22122549
+	
+2. Fonctionnalités:
+	Un programme qui traite un check d'un fichier solution pour les 4 modes en prennant en paramétre n (avec le quel, la partie est initialisée) et le nom du fichier.
+	ex: ./run fc.12345 -check fichier.sol et quelque cas de recherche d'une solution.
+	
+3. Compilation et exécution:
+	le programme est compilé et excécuté comme expliqué dans dune.
+
+4. Découpage modulaire:
+	Tout le code est, en ce moment, mis dans le fichier XpatSolver.ml; Le programme lit la valeur de n, en génere une permutation (shuffle),  initialise la partie (initialise_game) selon les régles du jeux choisi (cela sera déterminé avec une variable 'rules' qui formalise les régles à suivre durant la partie. Une partie est définie par une variable 'game_state' qui contient des champs mutables pour le contenu des colonnes, registres, depots et l'historique. Puis, la fonction 'check' va lire le fichier solution ligne par ligne, et intérprete les coups. Si le coup est valide, il est executé (sinon, echec n). On appelle une des fonctions 'apply_coup_to_card' ou 'apply_coup_to_colnne_vide' ou 'apply_coup_to_registre' qui va modifier le contenu de game_state. A la fin, si tous les depots sont remplis, et les colonnes et les registres sont les deux vides, donc la partie est gagnée.
+	La fonction 'search' prend en argument un état initial et un fichier de sortie,  elle y écrit l'historique des coups d'une solution valide.
+	On s'en serve de: Fifo.ml, Card.ml. (Fifo contient deux nouvelles fonctions, et Card contient une fonction de plus mais la structure n'est pas modifiée)
+	
+5. Organisation:
+	Yacine a commencé par shuffle, Mohamed par l'initialisation (deux taches indépendantes)
+	le reste du travail (check et search) est découpé en fonctionnalités à implémenter (normalisation, inserion, traitement des rois, écriture de l'historique, recherche...)
+	
+
